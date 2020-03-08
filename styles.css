@@ -1,0 +1,283 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-size: 20px;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  background-color: royalblue;
+  position: fixed;
+  flex-basis: 20vh;
+  text-align: center;
+  line-height: 55px;
+  font-family: sans-serif;
+  font-size: 1rem;
+
+  width: 100%;
+}
+
+header.blurred {
+  filter: blur(3px);
+  pointer-events: none;
+}
+
+#mealList {
+
+  flex-basis: 80vh;
+
+  display: flex;
+  margin-top: 20%;
+  flex-direction: column;
+  width: 100%;
+  overflow: scroll;
+}
+
+.mealList.blurred {
+  filter: blur(3px);
+  pointer-events: none;
+}
+
+footer {
+  position: fixed;
+  background-color: royalblue;
+  width: 100%;
+  height: 55px;
+
+  bottom: 0;
+  left: 0;
+}
+
+footer.blurred {
+  filter: blur(3px);
+  pointer-events: none;
+}
+
+ul {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  justify-content: center;
+  text-align: center;
+}
+
+li {
+  flex-grow: 1;
+  flex-basis: 30%;
+  transform: translateY(50%);
+}
+
+i {
+  font-size: 25px;
+
+  display: block;
+  cursor: pointer;
+}
+
+i:hover {
+  color: white;
+}
+
+.modal-wrap {
+  display: none;
+}
+
+form {
+  flex-direction: column;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  align-content: space-between;
+  background-color: #CCC;
+}
+
+.addIndigrient {
+  height: 6%;
+  overflow: hidden;
+  margin-left: 2%;
+  width: 40%;
+  background-color: white;
+  padding-right: 1%;
+  margin-bottom: 2%;
+
+}
+
+
+.addIndigrient input {
+  width: 100%;
+  height: 100%;
+
+}
+
+.modal-wrap.active {
+  filter: blur(0);
+  display: flex;
+  position: absolute;
+  background-color: black;
+  width: 80%;
+  height: 70%;
+  align-self: center;
+  transform: translateY(25%);
+
+  background-color: gray;
+}
+
+h1.mealName {
+  flex-basis: 10%;
+  background-color: #CCC;
+  margin-bottom: 4%;
+}
+
+form #addIngrendientButton {
+  justify-content: center;
+  text-align: center;
+  position: absolute;
+  bottom: 2%;
+  right: 30%;
+
+}
+
+form #savingButton {
+  top: 0%;
+  right: 0%;
+
+  font-size: 2rem;
+  color: black;
+  background-color: transparent;
+  justify-content: center;
+  text-align: center;
+  position: absolute;
+
+
+}
+
+form .exitButton {
+  position: absolute;
+  bottom: 2%;
+  right: 5%;
+}
+
+form .far {
+  font-size: 2rem
+}
+
+@keyframes glow {
+  0% {
+    transform: scale(1);
+    color: black;
+  }
+
+  12% {
+    transform: scale(1.15);
+  }
+
+  25% {
+    transform: scale(1.25);
+    color: #000;
+  }
+
+  37% {
+    transform: scale(1.32);
+  }
+
+  50% {
+    transform: scale(1.5);
+    color: orange;
+  }
+
+  62% {
+    transform: scale(1.6);
+  }
+
+  75% {
+    transform: scale(1.75);
+  }
+
+  87% {
+    transform: scale(1.85);
+  }
+
+  100% {
+    transform: scale(2);
+    color: red;
+  }
+}
+
+
+
+div.addIndigrient>input {
+  width: 100%;
+  transform: translateY(-11%);
+}
+
+/* list */
+
+li:first-of-type {
+  order: 0;
+}
+
+li:first-of-type .active {
+  opacity: 0.5;
+
+  pointer-events: none;
+}
+
+
+
+
+li:nth-of-type(2) {
+  order: 1;
+}
+
+li:nth-of-type(3) {
+  order: 2;
+}
+
+li:last-of-type {
+  order: 3;
+}
+
+li:last-of-type .active {
+  pointer-events: none;
+
+  opacity: 0.5;
+
+}
+
+li:nth-of-type(2) .active {
+  pointer-events: none;
+
+  opacity: 0.5;
+}
+
+li:nth-of-type(3) .active {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.childElementOfContainer {
+  margin-bottom: 1%;
+  line-height: auto;
+  border: 2px inset;
+}
+
+.ingredientsNames {
+  margin: 2%;
+  width: 40%;
+}
+
+#formParent {
+  background-color: #CCC;
+  height: 70%;
+  overflow: scroll;
+  width: 100%;
+  position: relative;
+}
