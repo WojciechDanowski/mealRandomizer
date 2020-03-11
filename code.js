@@ -48,7 +48,7 @@ closeModalBtn.addEventListener("click", function() {
 // przygotowanie diva z inputem składnika
 getPreparedIngridient = () => {
   const ingredientDiv = document.createElement("div");
-  const ingredientInput = document.createElement("input");
+  let ingredientInput = document.createElement("input");
   ingredientDiv.className = "addIngredient";
   ingredientInput.placeholder = "Dodaj składnik...";
 
@@ -78,7 +78,7 @@ addIndigrientBtn.addEventListener("click", onIngridientAddClick);
 
 // Funkcje dodająca posiłek do obiektu meal
 
-const mealNameInput = document.querySelector("#mealName");
+let mealNameInput = document.querySelector("#mealName");
 
 const addIngridientsToList = () => {
   const ingredients = document.getElementsByClassName("ingredientsNames");
@@ -175,6 +175,11 @@ clearAddingList = () => {
   addingMealContainer.innerHTML = "";
   const freshDiv = document.createElement("div");
   const freshInput = document.createElement("input");
+  mealNameInput = freshInput;
+  meal = {
+    name: "",
+    ingredients: []
+  };
   freshDiv.className = "addIndigrient";
   freshInput.id = "mealName";
   freshInput.placeholder = "Dodaj danie...";
@@ -186,3 +191,4 @@ clearAddingList = () => {
 // - MediaQueries
 // - edycja, podgląd i usuwanie z listy
 // - losowanie posiłku
+//ingrendies źle dodają się do localStorage przez funkcję clearADdingList (referencja)
