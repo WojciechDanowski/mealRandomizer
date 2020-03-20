@@ -16,6 +16,10 @@ const backToMainMenuButton = document.getElementById("backToMainMenu");
 const getRandomMealButton = document.getElementById("getRandomMeal");
 // container dla posiłku
 const addingMealContainer = document.getElementById("formParent");
+// wyszukiwarka
+const searchInput = document.createElement('input');
+// sekcja
+const mainSection = document.querySelector('section');
 
 const section = document.querySelector("section");
 const footer = document.querySelector("footer");
@@ -28,7 +32,7 @@ let meal = {
   ingredients: []
 };
 
-openModalBtn.addEventListener("click", function() {
+openModalBtn.addEventListener("click", function () {
   divWithModal.classList.add("active");
   footer.classList.add("blurred");
 
@@ -36,7 +40,7 @@ openModalBtn.addEventListener("click", function() {
   console.log("klik");
 });
 
-closeModalBtn.addEventListener("click", function() {
+closeModalBtn.addEventListener("click", function () {
   divWithModal.classList.remove("active");
   footer.classList.remove("blurred");
 
@@ -126,19 +130,28 @@ const showListButton = document.querySelector("#list");
 
 const mealList = document.querySelector("#mealList");
 const clearList = () => {
+  searchInput.parentNode.removeChild(searchInput)
   document.getElementById("mealList").innerText = "";
 };
 
 // h1  z headera
 const headerH1 = document.querySelector("h1");
+// Div jako kontener na posiłki
+const parentElement = document.getElementById("mealList");
 // funkcja po otwarciu listy
+
+
 const openListView = () => {
+
+  mainSection.appendChild(searchInput);
+  searchInput.type = "text";
+  searchInput.className = "search";
+
   headerH1.innerText = "List";
   openModalBtn.classList.add("active");
   showListButton.classList.add("active");
   getRandomMealButton.classList.add("active");
   backToMainMenuButton.classList.remove("active");
-  const parentElement = document.getElementById("mealList");
   let listOfMeals = localStorage.getItem("list");
   listOfMeals = JSON.parse(listOfMeals);
   let mealContainer = null;
@@ -165,13 +178,14 @@ openMenuView = () => {
 
 backToMainMenuButton.addEventListener("click", openMenuView);
 
-getRandomMealButton.addEventListener("click", function() {
+getRandomMealButton.addEventListener("click", function () {
   alert("Work in progress");
 });
 
 // funkcja czyszcząca modal dodawania
 
 clearAddingList = () => {
+
   addingMealContainer.innerHTML = "";
   const freshDiv = document.createElement("div");
   const freshInput = document.createElement("input");
@@ -187,8 +201,33 @@ clearAddingList = () => {
   addingMealContainer.appendChild(freshDiv);
 };
 
+// lista posiłków 
+let mealsInListView = document.getElementsByClassName('childElementOfContainer');
+
+// funkcja wyszukująca posiłki
+const searchForMeal = (e) => {
+  let searchText = e.target.value.toLowerCase();
+
+  let meals = [...mealsInListView];
+
+  console.log(meals);
+
+  meals = meals.filter(item => item.textContent.toLocaleLowerCase().includes(searchText));
+  console.log(meals);
+  parentElement.textContent = "";
+  meals.forEach(i => parentElement.appendChild(i));
+
+
+}
+searchInput.addEventListener('input', searchForMeal);
+
+
+
+
+
+
 // rzeczy do zrobienia:
 // - MediaQueries
 // - edycja, podgląd i usuwanie z listy
 // - losowanie posiłku
-//ingrendies źle dodają się do localStorage przez funkcję clearADdingList (referencja)
+// Poprawić wyszukiwarkę by zwracała elementy przy pustej wartości w polu input.

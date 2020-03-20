@@ -263,6 +263,7 @@ li:nth-of-type(3) .active {
   opacity: 0.5;
 }
 
+
 .childElementOfContainer {
   margin-bottom: 1%;
   line-height: auto;
@@ -280,4 +281,12 @@ li:nth-of-type(3) .active {
   overflow: scroll;
   width: 100%;
   position: relative;
+}
+
+.search {
+  bottom: 3%;
+  width: 50%;
+  margin-bottom: 10%;
+  position: absolute;
+  background-color: lightblue;
 }
