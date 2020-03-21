@@ -17,9 +17,9 @@ const getRandomMealButton = document.getElementById("getRandomMeal");
 // container dla posiłku
 const addingMealContainer = document.getElementById("formParent");
 // wyszukiwarka
-const searchInput = document.createElement('input');
+const searchInput = document.createElement("input");
 // sekcja
-const mainSection = document.querySelector('section');
+const mainSection = document.querySelector("section");
 
 const section = document.querySelector("section");
 const footer = document.querySelector("footer");
@@ -32,7 +32,7 @@ let meal = {
   ingredients: []
 };
 
-openModalBtn.addEventListener("click", function () {
+openModalBtn.addEventListener("click", function() {
   divWithModal.classList.add("active");
   footer.classList.add("blurred");
 
@@ -40,7 +40,7 @@ openModalBtn.addEventListener("click", function () {
   console.log("klik");
 });
 
-closeModalBtn.addEventListener("click", function () {
+closeModalBtn.addEventListener("click", function() {
   divWithModal.classList.remove("active");
   footer.classList.remove("blurred");
 
@@ -130,7 +130,7 @@ const showListButton = document.querySelector("#list");
 
 const mealList = document.querySelector("#mealList");
 const clearList = () => {
-  searchInput.parentNode.removeChild(searchInput)
+  searchInput.parentNode.removeChild(searchInput);
   document.getElementById("mealList").innerText = "";
 };
 
@@ -140,9 +140,7 @@ const headerH1 = document.querySelector("h1");
 const parentElement = document.getElementById("mealList");
 // funkcja po otwarciu listy
 
-
 const openListView = () => {
-
   mainSection.appendChild(searchInput);
   searchInput.type = "text";
   searchInput.className = "search";
@@ -178,14 +176,13 @@ openMenuView = () => {
 
 backToMainMenuButton.addEventListener("click", openMenuView);
 
-getRandomMealButton.addEventListener("click", function () {
+getRandomMealButton.addEventListener("click", function() {
   alert("Work in progress");
 });
 
 // funkcja czyszcząca modal dodawania
 
 clearAddingList = () => {
-
   addingMealContainer.innerHTML = "";
   const freshDiv = document.createElement("div");
   const freshInput = document.createElement("input");
@@ -201,33 +198,30 @@ clearAddingList = () => {
   addingMealContainer.appendChild(freshDiv);
 };
 
-// lista posiłków 
-let mealsInListView = document.getElementsByClassName('childElementOfContainer');
+// lista posiłków
+let mealsInListView = document.getElementsByClassName(
+  "childElementOfContainer"
+);
 
 // funkcja wyszukująca posiłki
-const searchForMeal = (e) => {
+const searchForMeal = e => {
   let searchText = e.target.value.toLowerCase();
 
   let meals = [...mealsInListView];
 
-  console.log(meals);
+  console.log(meals, searchText);
 
-  meals = meals.filter(item => item.textContent.toLocaleLowerCase().includes(searchText));
-  console.log(meals);
-  parentElement.textContent = "";
-  meals.forEach(i => parentElement.appendChild(i));
-
-
-}
-searchInput.addEventListener('input', searchForMeal);
-
-
-
-
-
+  meals.forEach(item => {
+    if (item.textContent.toLowerCase().includes(searchText)) {
+      item.style.display = "block";
+    } else {
+      item.style.display = "none";
+    }
+  });
+};
+searchInput.addEventListener("input", searchForMeal);
 
 // rzeczy do zrobienia:
 // - MediaQueries
 // - edycja, podgląd i usuwanie z listy
 // - losowanie posiłku
-// Poprawić wyszukiwarkę by zwracała elementy przy pustej wartości w polu input.
