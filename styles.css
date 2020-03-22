@@ -267,7 +267,7 @@ li:nth-of-type(3) .active {
 .childElementOfContainer {
   margin-bottom: 1%;
   line-height: auto;
-  border: 2px inset;
+
 }
 
 .ingredientsNames {

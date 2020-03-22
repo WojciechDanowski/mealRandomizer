@@ -72,6 +72,11 @@ removeAnimationFromSavingButton = () => {
 
 // przygotowany div z inputem ląduje metoda append child do formularza w htmlu
 onIngridientAddClick = () => {
+  if (mealNameInput.value === "") {
+    mealNameInput.style.backgroundColor = "mistyrose";
+    return;
+  }
+  mealNameInput.style.backgroundColor = "white";
   const preparedIngredientDiv = getPreparedIngridient();
   const htmlForm = document.querySelector("form");
   addingMealContainer.appendChild(preparedIngredientDiv);
@@ -86,6 +91,7 @@ let mealNameInput = document.querySelector("#mealName");
 
 const addIngridientsToList = () => {
   const ingredients = document.getElementsByClassName("ingredientsNames");
+
   for (const ingredient of ingredients) {
     meal.ingredients.push(ingredient.value);
   }
@@ -96,6 +102,11 @@ const changeMealName = () => {
 };
 
 saveFormButton.addEventListener("click", () => {
+  if (mealNameInput.value === "") {
+    mealNameInput.style.backgroundColor = "mistyrose";
+    return;
+  }
+  mealNameInput.style.backgroundColor = "white";
   changeMealName();
   addIngridientsToList();
   submitPreparedMeal();
@@ -144,6 +155,7 @@ const openListView = () => {
   mainSection.appendChild(searchInput);
   searchInput.type = "text";
   searchInput.className = "search";
+  searchInput.placeholder = "Wyszukaj...";
 
   headerH1.innerText = "List";
   openModalBtn.classList.add("active");
@@ -155,11 +167,18 @@ const openListView = () => {
   let mealContainer = null;
   for (let meal of listOfMeals) {
     mealContainer = document.createElement("div");
-    mealContainer.innerText = meal.name;
+    // mealContainer.innerText = meal.name;
     mealContainer.className = "childElementOfContainer";
+    mealContainer.innerHTML = meal.name + "<button>Usuń</button>";
+
     parentElement.appendChild(mealContainer);
   }
+  // mealContainer.querySelector("button").addEventListener("click", removeMeal);
 };
+
+// const removeMeal = e => {
+//   e.parentNode.remove();
+// };
 
 showListButton.addEventListener("click", openListView);
 
@@ -172,6 +191,7 @@ openMenuView = () => {
   showListButton.classList.remove("active");
   backToMainMenuButton.classList.add("active");
   headerH1.innerText = "Meal Randomizer";
+  searchInput.value = "";
 };
 
 backToMainMenuButton.addEventListener("click", openMenuView);
@@ -209,8 +229,6 @@ const searchForMeal = e => {
 
   let meals = [...mealsInListView];
 
-  console.log(meals, searchText);
-
   meals.forEach(item => {
     if (item.textContent.toLowerCase().includes(searchText)) {
       item.style.display = "block";
@@ -223,5 +241,5 @@ searchInput.addEventListener("input", searchForMeal);
 
 // rzeczy do zrobienia:
 // - MediaQueries
-// - edycja, podgląd i usuwanie z listy
+// - edycja, podgląd i usuwanie(poprawić) z listy
 // - losowanie posiłku
