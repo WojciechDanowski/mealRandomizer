@@ -32,7 +32,7 @@ let meal = {
   ingredients: []
 };
 
-openModalBtn.addEventListener("click", function() {
+openModalBtn.addEventListener("click", function () {
   divWithModal.classList.add("active");
   footer.classList.add("blurred");
 
@@ -40,7 +40,7 @@ openModalBtn.addEventListener("click", function() {
   console.log("klik");
 });
 
-closeModalBtn.addEventListener("click", function() {
+closeModalBtn.addEventListener("click", function () {
   divWithModal.classList.remove("active");
   footer.classList.remove("blurred");
 
@@ -169,17 +169,14 @@ const openListView = () => {
     mealContainer = document.createElement("div");
     // mealContainer.innerText = meal.name;
     mealContainer.className = "childElementOfContainer";
-    mealContainer.innerHTML = meal.name + "<button>Usuń</button>";
+    mealContainer.innerHTML =
+      meal.name + `<button class="deleteMeal">Usuń</button>`;
 
     parentElement.appendChild(mealContainer);
   }
-  // mealContainer.querySelector("button").addEventListener("click", removeMeal);
 };
 
-// const removeMeal = e => {
-//   e.parentNode.remove();
-// };
-
+const deleteButtons = document.querySelectorAll("button.deleteMeal");
 showListButton.addEventListener("click", openListView);
 
 // funkcja powrotu do menu głównego
@@ -196,7 +193,7 @@ openMenuView = () => {
 
 backToMainMenuButton.addEventListener("click", openMenuView);
 
-getRandomMealButton.addEventListener("click", function() {
+getRandomMealButton.addEventListener("click", function () {
   alert("Work in progress");
 });
 
@@ -241,5 +238,9 @@ searchInput.addEventListener("input", searchForMeal);
 
 // rzeczy do zrobienia:
 // - MediaQueries
-// - edycja, podgląd i usuwanie(poprawić) z listy
+// - edycja, podgląd  listy
 // - losowanie posiłku
+// indeksowanie elementów w localStorage 
+// usuwanie względem indeksu 
+// poprawić style(wizualnie)
+// przepisać na reacta 
